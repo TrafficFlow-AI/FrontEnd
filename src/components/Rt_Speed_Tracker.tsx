@@ -11,7 +11,7 @@ export function Rt_Speed_Tracker() {
   const [data, setData] = useState<SpeedData[]>([]);
 
   useEffect(() => {
-    const eventSource = new EventSource("http://127.0.0.1:5000/get_speed_data");
+    const eventSource = new EventSource("http://192.168.111.109:5000/get_speed_data");
 
     eventSource.onmessage = function(event) {
       try {
@@ -40,9 +40,15 @@ export function Rt_Speed_Tracker() {
   }, []);
 
   return (
-    <div>
-      <h1>Real-time Speed Tracker</h1>
-      <img src="http://127.0.0.1:5000/speed_estimation" alt="Real-time Speed Tracker" />
+    <div className="max-w-4xl mx-auto">
+      <div className="font-semibold mb-4 text-center">
+        <h2>Real-time Speed Tracker</h2>
+      <div className="flex flex-col sm:flex-row justify-between items-center">
+        <div className="flex justify-center items-center mb-4 sm:mb-0 sm:mr-8">
+          <img src="http://192.168.111.109:5000/speed_estimation" alt="Real-time Speed Tracker" />      
+        </div>
+      
+      <div>
       <Table>
         <TableHeader>
           <TableRow>
@@ -59,8 +65,11 @@ export function Rt_Speed_Tracker() {
           ))}
         </TableBody>
       </Table>
+      </div>
+      </div>
+      </div>
       <h1>Real-time Traffic Flow</h1>
-      <img src="http://127.0.0.1:5000/queue_detection" alt="Real-time Traffic Flow" />
+      <img src="http://192.168.111.109:5000/queue_detection" alt="Real-time Traffic Flow" />
     </div>
   );
 }

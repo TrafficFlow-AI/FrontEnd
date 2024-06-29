@@ -59,6 +59,8 @@ export function Rt_Speed_Tracker() {
           ))}
         </TableBody>
       </Table>
+      <h1>Real-time Traffic Flow</h1>
+      <img src="http://127.0.0.1:5000/queue_detection" alt="Real-time Traffic Flow" />
     </div>
   );
 }

@@ -13,12 +13,12 @@ export function Story() {
         </p>
         <h3 className="">What we solve</h3>
         <p className="">
-          <p>
+          
             Creating an effective solution for traffic jams is a challenging and
             expensive task. However, with our proposal, we will achieve a
             high-quality and cost-effective solution, significantly improving
             vehicle flow during rush hours in Barcelona.
-          </p>
+          
         </p>
         <h3 className="text-xl font-semibold">Stack</h3>
         <p className="text-xl font-semibold"></p>

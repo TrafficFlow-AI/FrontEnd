@@ -98,7 +98,7 @@ export const NextjsCard: React.FC = () => {
 };
 
 interface TFCardProps {
-  count: number;
+  count: number | undefined;
 }
 
 export const TFCard: React.FC<TFCardProps> = ({

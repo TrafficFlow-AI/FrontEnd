@@ -26,19 +26,21 @@ export function Rt_Traffic_Flow() {
       eventSource.close();
     };
   }, []);
-  const count =data?.counts;
+
+  const count = data?.counts;
+
   return (
-    <div className="max-w-4xl mx-auto">
-      <div className="font-semibold mb-4 ">
-        <h2 id="TrafficFlow" className="font-semibold mb-2 text-2xl">Real-time Traffic Flow</h2>
-      <div className="flex flex-col sm:flex-row justify-between items-center">
-      <div>
-        <TFCard count={count}/>
-      </div>
-      <div className="flex justify-center items-center mb-4 sm:mb-0 sm:mr-8">
-        <img src="http://192.168.111.109:5033/queue_detection" alt="Real-time Traffic Flow" />
+    <div className="max-w-4xl mx-auto p-4">
+      <div className=" mb-4">
+        <h2 id="TrafficFlow" className="text-3xl font-bold mb-2">Real-time Traffic Flow</h2>
+        <div className="flex flex-col  justify-between items-center">
+          <div className="w-full sm:w-auto mb-4 sm:mb-0 sm:mr-4">
+            <TFCard count={count} />
+          </div>
+          <div className="flex justify-center items-center">
+            <img src="http://192.168.111.109:5033/queue_detection" alt="Real-time Traffic Flow" className="w-full" />
+          </div>
         </div>
-      </div>
       </div>
     </div>
   );

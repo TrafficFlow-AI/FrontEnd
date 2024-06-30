@@ -40,7 +40,7 @@ const contactInfo = [
 
 const ContactCardBuilder: React.FC = () => {
   return (
-    <div className="flex flex-col md:flex-row gap-5 my-20">
+    <div className="flex flex-col md:flex-row gap-2 my-20">
       {contactInfo.map((info, index) => (
         <ContactCard
           key={index}

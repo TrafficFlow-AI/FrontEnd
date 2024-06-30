@@ -40,12 +40,12 @@ export const ContactCard: React.FC<ContactCardProps> = ({
             <img
               src={linkImage}
               alt={`${site} logo`}
-              className="w-16 h-auto rounded-xl mr-4"
+              className="w-16 h-auto rounded-xl ml-4"
             />
           </div>
         )}
         <CardContent className="flex flex-col justify-center">
-          <CardTitle className="text-large font-medium pt-2">{site}</CardTitle>
+          <CardTitle className="text-large font-medium mt-4">{site}</CardTitle>
           <div className="flex items-center pt-2">
             {iconGit}
             {linkGit ? (
@@ -176,29 +176,27 @@ interface TFCardProps {
   count: number | undefined;
 }
 
-export const TFCard: React.FC<TFCardProps> = ({
-  count,
-}) => {
+export const TFCard: React.FC<TFCardProps> = ({ count }) => {
   return (
-    <Card className="border-none rounded-lg p-4 hover:bg-secondary">
-      <CardHeader className="flex items-center space-x-2">
-        <CardTitle className="text-lg font-semibold">Gran Via - KM 5</CardTitle>
-      </CardHeader>
-      <CardContent>
-        <CardDescription className="text-gray-600">
-          Number of cars: {count}
-        </CardDescription>
-      </CardContent>
-      <CardFooter className="">
-        <a
-          href="https://maps.app.goo.gl/xMchrSm8RqUadMVU6"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-blue-500 hover:underline"
-        >
-          View in Maps
-        </a>
-      </CardFooter>
+    <Card className="w-full border-none rounded-lg hover:bg-secondary">
+      <div className="flex items-center justify-between p-4">
+        <div className="m-4">
+          <p className="">Gran Via - KM 5</p>
+        </div>
+        <div className="m-4">
+          <p className="text-gray-600">Number of cars: {count}</p>
+        </div>
+        <div className="m-4">
+          <a
+            href="https://maps.app.goo.gl/xMchrSm8RqUadMVU6"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-blue-500 hover:underline"
+          >
+            View in Maps
+          </a>
+        </div>
+      </div>
     </Card>
   );
-};;
+};

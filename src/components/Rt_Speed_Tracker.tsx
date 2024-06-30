@@ -1,5 +1,6 @@
+
 "use client";
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 
 interface SpeedData {
@@ -7,10 +8,14 @@ interface SpeedData {
   speed: number;
 }
 
+const RECONNECT_INTERVAL = 5000; // 5 segundos
+
 export function Rt_Speed_Tracker() {
   const [data, setData] = useState<SpeedData[]>([]);
+  const [lastMessageTime, setLastMessageTime] = useState(Date.now());
+  const eventSourceRef = useRef<EventSource | null>(null);
 
-  useEffect(() => {
+  const connectEventSource = () => {
     const eventSource = new EventSource("http://192.168.111.109:5033/get_speed_data");
 
     eventSource.onmessage = function(event) {
@@ -26,6 +31,7 @@ export function Rt_Speed_Tracker() {
 
           console.log("Transformed data:", newData);
           setData(newData);
+          setLastMessageTime(Date.now());
         } else {
           console.error("Expected valid data but got:", rawData);
         }
@@ -34,27 +40,56 @@ export function Rt_Speed_Tracker() {
       }
     };
 
-    return () => {
+    eventSource.onerror = function() {
+      console.error("EventSource failed. Closing connection.");
       eventSource.close();
+      eventSourceRef.current = null;
+    };
+
+    eventSourceRef.current = eventSource;
+  };
+
+  useEffect(() => {
+    connectEventSource();
+
+    return () => {
+      if (eventSourceRef.current) {
+        eventSourceRef.current.close();
+      }
     };
   }, []);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (Date.now() - lastMessageTime > RECONNECT_INTERVAL) {
+        console.warn("No messages received recently. Reconnecting...");
+        if (eventSourceRef.current) {
+          eventSourceRef.current.close();
+        }
+        connectEventSource();
+      }
+    }, RECONNECT_INTERVAL);
+
+    return () => clearInterval(interval);
+  }, [lastMessageTime]);
 
   const tableData = data.slice(0, 7);
   while (tableData.length < 7) {
     tableData.push({ track_id: -1, speed: -1 }); // Usar valores negativos o cualquier otro valor para indicar filas vacías
   }
-  
+
   return (
     <div className="max-w-4xl mx-auto">
       <div className="font-semibold mb-4 ">
-        <h2 id="SpeedTracker" className="font-semibold mb-2 text-2xl">Real-time Speed Tracker</h2>
-      <div className="flex flex-col sm:flex-row justify-between items-center">
-        <div className="flex justify-center items-center mb-4 sm:mb-0 sm:mr-8">
-          <img src="http://192.168.111.109:5033/speed_estimation" alt="Real-time Speed Tracker" />      
-        </div>
-      
-      <div>
-      <Table>
+        <h2 id="SpeedTracker" className="text-3xl font-bold mb-2">Real-time Speed Tracker</h2>
+        <div className="flex flex-col sm:flex-row justify-between items-center">
+          <div className="flex justify-center items-center mb-4 sm:mb-0 sm:mr-8">
+            <img src="http://192.168.111.109:5033/speed_estimation" alt="Real-time Speed Tracker" />
+          </div>
+
+          <div>
+            <Table>
+
               <TableHeader>
                 <TableRow>
                   <TableHead>Track ID</TableHead>
@@ -70,9 +105,10 @@ export function Rt_Speed_Tracker() {
                 ))}
               </TableBody>
             </Table>
-      </div>
-      </div>
+          </div>
+        </div>
       </div>
     </div>
   );
 }
+

@@ -11,7 +11,7 @@ export function Rt_Traffic_Flow() {
   const [data, setData] = useState<QueueData>();
 
   useEffect(() => {
-    const eventSource = new EventSource("http://127.0.0.1:5000/get_queue_data");
+    const eventSource = new EventSource("http://192.168.111.109:5033/get_queue_data");
 
     eventSource.onmessage = function(event) {
       try {
@@ -37,7 +37,7 @@ export function Rt_Traffic_Flow() {
         <TFCard count={count}/>
       </div>
       <div className="flex justify-center items-center mb-4 sm:mb-0 sm:mr-8">
-        <img src="http://127.0.0.1:5000/queue_detection" alt="Real-time Traffic Flow" />
+        <img src="http://192.168.111.109:5033/queue_detection" alt="Real-time Traffic Flow" />
         </div>
       </div>
       </div>

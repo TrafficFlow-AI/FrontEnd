@@ -1,3 +1,5 @@
+
+import React from "react"
 import {
   Card,
   CardContent,
@@ -6,6 +8,79 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+
+
+
+interface ContactCardProps {
+  iconGit: React.ReactNode;
+  iconLinkedin: React.ReactNode;
+  site: string;
+  usernameGit: string;
+  usernameLinkedin: string;
+  linkGit?: string;
+  linkLinkedin?: string;
+  linkImage?: string;
+}
+
+export const ContactCard: React.FC<ContactCardProps> = ({
+  iconGit,
+  iconLinkedin,
+  site,
+  usernameGit,
+  usernameLinkedin,
+  linkGit,
+  linkLinkedin,
+  linkImage,
+}) => {
+  return (
+    <Card className="border-none bg-secondary/60 dark:bg-default-100/50 mx-20 md:mx-5 flex items-center">
+      <div className="flex items-center px-2">
+        {linkImage && (
+          <div className="flex-shrink-0 flex items-center h-full">
+            <img
+              src={linkImage}
+              alt={`${site} logo`}
+              className="w-16 h-auto rounded-xl mr-4"
+            />
+          </div>
+        )}
+        <CardContent className="flex flex-col justify-center">
+          <CardTitle className="text-large font-medium pt-2">{site}</CardTitle>
+          <div className="flex items-center pt-2">
+            {iconGit}
+            {linkGit ? (
+              <a
+                href={linkGit}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-500 hover:underline ml-2"
+              >
+                {usernameGit}
+              </a>
+            ) : (
+              <span className="ml-2">{usernameGit}</span>
+            )}
+          </div>
+          <div className="flex items-center pt-1">
+            {iconLinkedin}
+            {linkLinkedin ? (
+              <a
+                href={linkLinkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-500 hover:underline ml-2"
+              >
+                {usernameLinkedin}
+              </a>
+            ) : (
+              <span className="ml-2">{usernameLinkedin}</span>
+            )}
+          </div>
+        </CardContent>
+      </div>
+    </Card>
+  );
+};
 
 // Carta para Flask
 export const FlaskCard: React.FC = () => {

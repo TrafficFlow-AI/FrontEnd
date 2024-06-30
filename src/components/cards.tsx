@@ -150,7 +150,7 @@ export const NextjsCard: React.FC = () => {
   return (
     <Card className="border-none rounded-lg p-4 hover:bg-secondary">
       <CardHeader className="flex items-center space-x-2">
-        <img src="https://static-00.iconduck.com/assets.00/next-js-icon-2048x2048-5dqjgeku.png" alt="Next.js Icon" className="w-6 h-6" />
+        <img src="https://www.rlogical.com/wp-content/uploads/2023/03/Rlogical-Blog-Images-thumbnail.webp" alt="Next.js Icon" className="w-6 h-6" />
         <CardTitle className="text-lg font-semibold">Next.js</CardTitle>
       </CardHeader>
       <CardContent>

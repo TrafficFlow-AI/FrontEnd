@@ -8,8 +8,8 @@ export const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
-    <nav className="mx-auto w-full flex flex-col max-w-lg sm:max-w-xl md:max-w-2xl lg:max-w-5xl ">
-      <div className="flex justify-between items-center p-4 isolate">
+    <nav className="fixed top-0 left-0 w-full bg-white z-50">
+      <div className="flex justify-between items-center px-4 py-2 max-w-lg sm:max-w-xl md:max-w-2xl lg:max-w-5xl mx-auto">
         {/* Mobile Navbar layout */}
         <div className="sm:hidden w-full flex justify-between items-center">
           <Link href="/" legacyBehavior passHref>
@@ -61,15 +61,19 @@ export const Navbar = () => {
         </div>
 
         {/* PC Layout */}
-        <div className="hidden sm:flex sm:items-center sm:justify-between w-full backdrop-blur-md">
-          <div className="flex">
+        <div className="hidden sm:flex sm:items-center sm:justify-between w-full">
+          <div className="flex items-center">
+          <img src="icono.png" alt="icono" className="h-6 w-auto mr-2"/>
             <Link href="/" legacyBehavior passHref>
+            
               <a className="text-lg font-semibold">TrafficFlow AI</a>
             </Link>
           </div>
           <div className="flex items-center space-x-6">
-            <Link href="/project">Project</Link>
-            <Link href="/about">About</Link>
+            <a href="#SpeedTracker">Speed Tracker</a>
+            <a href="#TrafficFlow">Traffic Flow</a>
+            <a href="#OurStory">Our Story</a>
+            <a href="#AboutUs">About Us</a>
             <ThemeToggle />
           </div>
         </div>
@@ -79,16 +83,10 @@ export const Navbar = () => {
       {isMobileMenuOpen && (
         <div className="sm:hidden w-full" id="mobile-menu">
           <div className="px-2 pt-2 pb-3 space-y-1">
-            <Link href="/" className="block">
-              Home
-            </Link>
-            <Link href="/projects" className="block">
-              Projects
-            </Link>
-            <Link href="/about" className="block">
-              About
-            </Link>
-
+            <a href="#SpeedTracker" className="block">Speed Tracker</a>
+            <a href="#TrafficFlow" className="block">Traffic Flow</a>
+            <a href="#OurStory" className="block">Our Story</a>
+            <a href="#AboutUs" className="block">About Us</a>
           </div>
         </div>
       )}

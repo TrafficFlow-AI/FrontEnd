@@ -1,6 +1,5 @@
 "use client";
 import React, { useEffect, useState } from 'react';
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { TFCard } from './cards';
 
 interface QueueData {
@@ -31,7 +30,7 @@ export function Rt_Traffic_Flow() {
   return (
     <div className="max-w-4xl mx-auto">
       <div className="font-semibold mb-4 ">
-        <h2 className="font-semibold mb-2 text-2xl">Real-time Traffic Flow</h2>
+        <h2 id="TrafficFlow" className="font-semibold mb-2 text-2xl">Real-time Traffic Flow</h2>
       <div className="flex flex-col sm:flex-row justify-between items-center">
       <div>
         <TFCard count={count}/>

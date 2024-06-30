@@ -47,7 +47,7 @@ export function Rt_Speed_Tracker() {
   return (
     <div className="max-w-4xl mx-auto">
       <div className="font-semibold mb-4 ">
-        <h2 className="font-semibold mb-2 text-2xl">Real-time Speed Tracker</h2>
+        <h2 id="SpeedTracker" className="font-semibold mb-2 text-2xl">Real-time Speed Tracker</h2>
       <div className="flex flex-col sm:flex-row justify-between items-center">
         <div className="flex justify-center items-center mb-4 sm:mb-0 sm:mr-8">
           <img src="http://192.168.111.109:5033/speed_estimation" alt="Real-time Speed Tracker" />      

@@ -96,3 +96,34 @@ export const NextjsCard: React.FC = () => {
     </Card>
   );
 };
+
+interface TFCardProps {
+  count: number;
+}
+
+export const TFCard: React.FC<TFCardProps> = ({
+  count,
+}) => {
+  return (
+    <Card className="border-none rounded-lg p-4 hover:bg-secondary">
+      <CardHeader className="flex items-center space-x-2">
+        <CardTitle className="text-lg font-semibold">Gran Via - KM 5</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <CardDescription className="text-gray-600">
+          Number of cars: {count}
+        </CardDescription>
+      </CardContent>
+      <CardFooter className="">
+        <a
+          href="https://maps.app.goo.gl/xMchrSm8RqUadMVU6"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-blue-500 hover:underline"
+        >
+          View in Maps
+        </a>
+      </CardFooter>
+    </Card>
+  );
+};;
